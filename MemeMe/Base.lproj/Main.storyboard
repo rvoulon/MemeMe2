@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6nT-DF-hXm">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="impact.ttf">
+            <string>Impact</string>
+            <string>Impact</string>
+        </mutableArray>
+    </customFonts>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7G-J2-D3F">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ydR-t0-ph2">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TF2-Y9-7WX">
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="TF2-Y9-7WX" firstAttribute="leading" secondItem="ydR-t0-ph2" secondAttribute="leading" id="FaY-MK-gSa"/>
+                                            <constraint firstItem="TF2-Y9-7WX" firstAttribute="centerY" secondItem="ydR-t0-ph2" secondAttribute="centerY" id="JZq-4K-C63"/>
+                                            <constraint firstAttribute="trailing" secondItem="TF2-Y9-7WX" secondAttribute="trailing" id="Mr3-ON-Gyg"/>
+                                            <constraint firstAttribute="bottom" secondItem="TF2-Y9-7WX" secondAttribute="bottom" id="kzx-BW-a8y"/>
+                                            <constraint firstItem="TF2-Y9-7WX" firstAttribute="top" secondItem="ydR-t0-ph2" secondAttribute="top" id="mhu-Yd-W6M"/>
+                                            <constraint firstItem="TF2-Y9-7WX" firstAttribute="centerX" secondItem="ydR-t0-ph2" secondAttribute="centerX" id="pjG-Jd-yDE"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="xBW-zV-jv2"/>
+                                        </connections>
+                                    </scrollView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="25" translatesAutoresizingMaskIntoConstraints="NO" id="E2D-1T-rpw">
+                                        <rect key="frame" x="8" y="500" width="584" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="Fz3-Ht-NaA"/>
+                                            <constraint firstAttribute="height" constant="48" id="QgI-Vq-xYV"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="40"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="25" translatesAutoresizingMaskIntoConstraints="NO" id="DXb-sh-lFc">
+                                        <rect key="frame" x="8" y="8" width="584" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="END-os-s7L"/>
+                                            <constraint firstAttribute="height" constant="48" id="uKN-Ud-gJS"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="40"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="ydR-t0-ph2" firstAttribute="leading" secondItem="n7G-J2-D3F" secondAttribute="leading" id="1OJ-j8-On7"/>
+                                    <constraint firstAttribute="bottom" secondItem="ydR-t0-ph2" secondAttribute="bottom" id="1WX-6m-fMV"/>
+                                    <constraint firstAttribute="trailing" secondItem="DXb-sh-lFc" secondAttribute="trailing" constant="8" id="B2d-Si-kUv"/>
+                                    <constraint firstItem="E2D-1T-rpw" firstAttribute="bottom" secondItem="n7G-J2-D3F" secondAttribute="bottomMargin" id="BG1-Op-sVo"/>
+                                    <constraint firstItem="DXb-sh-lFc" firstAttribute="centerX" secondItem="n7G-J2-D3F" secondAttribute="centerX" id="HzT-2v-VMZ"/>
+                                    <constraint firstItem="DXb-sh-lFc" firstAttribute="top" secondItem="n7G-J2-D3F" secondAttribute="top" constant="8" id="JWC-CY-hTJ"/>
+                                    <constraint firstItem="DXb-sh-lFc" firstAttribute="leading" secondItem="n7G-J2-D3F" secondAttribute="leading" constant="8" id="KcQ-vu-t5O"/>
+                                    <constraint firstItem="ydR-t0-ph2" firstAttribute="centerY" secondItem="n7G-J2-D3F" secondAttribute="centerY" id="Z1X-XO-jQS"/>
+                                    <constraint firstItem="E2D-1T-rpw" firstAttribute="centerX" secondItem="n7G-J2-D3F" secondAttribute="centerX" id="jbD-9w-80V"/>
+                                    <constraint firstAttribute="trailing" secondItem="ydR-t0-ph2" secondAttribute="trailing" id="nmp-yp-Imy"/>
+                                    <constraint firstItem="ydR-t0-ph2" firstAttribute="top" secondItem="n7G-J2-D3F" secondAttribute="top" id="vOf-zn-1rk"/>
+                                    <constraint firstAttribute="trailing" secondItem="E2D-1T-rpw" secondAttribute="trailing" constant="8" id="vQ7-EN-vdB"/>
+                                    <constraint firstItem="E2D-1T-rpw" firstAttribute="leading" secondItem="n7G-J2-D3F" secondAttribute="leading" constant="8" id="vZj-y0-bSZ"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="n7G-J2-D3F" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="SWB-JQ-3y5"/>
+                            <constraint firstItem="n7G-J2-D3F" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="foA-B3-j5H"/>
+                            <constraint firstItem="n7G-J2-D3F" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="j9k-Ux-9cT"/>
+                            <constraint firstAttribute="trailing" secondItem="n7G-J2-D3F" secondAttribute="trailing" id="rea-th-9QB"/>
+                            <constraint firstItem="n7G-J2-D3F" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-22" id="vdJ-bd-dDL"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="2Xi-AI-1Fe"/>
+                        <barButtonItem systemItem="add" id="YPt-bg-cL8">
+                            <color key="tintColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="pickAnImage:" destination="BYZ-38-t0r" id="UZf-6H-SRh"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Lim-rc-8lb"/>
+                        <barButtonItem systemItem="camera" id="6uP-Ej-o6Q">
+                            <color key="tintColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="takeAPicture:" destination="BYZ-38-t0r" id="ocK-kC-jNh"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="wNP-Su-lSx"/>
+                        <barButtonItem systemItem="action" id="Zcq-ww-KT9">
+                            <color key="tintColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="shareMeme:" destination="BYZ-38-t0r" id="N7K-hn-TWm"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Ahv-y2-5I6"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="uSP-6g-k0i"/>
+                    <connections>
+                        <outlet property="bottomTextField" destination="E2D-1T-rpw" id="7A2-Gz-fgD"/>
+                        <outlet property="cameraButton" destination="6uP-Ej-o6Q" id="ueO-5A-yqM"/>
+                        <outlet property="imagePickerView" destination="TF2-Y9-7WX" id="AbR-0z-eIG"/>
+                        <outlet property="imageScrollView" destination="ydR-t0-ph2" id="JaQ-3y-DIh"/>
+                        <outlet property="scrollView" destination="n7G-J2-D3F" id="kVN-VH-vgk"/>
+                        <outlet property="shareButton" destination="Zcq-ww-KT9" id="2rm-yz-Ucd"/>
+                        <outlet property="topTextField" destination="DXb-sh-lFc" id="56I-jF-66X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1018" y="327"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ahA-bj-nKN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" toolbarHidden="NO" id="6nT-DF-hXm" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9K8-vY-XOO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" id="sNv-9D-K8s">
+                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="c98-0K-jgT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o9M-Yx-cfg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="206" y="327"/>
+        </scene>
+    </scenes>
+    <color key="tintColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+</document>
