@@ -292,8 +292,10 @@ class EditMemeViewController: UIViewController, UIImagePickerControllerDelegate,
         // save the meme and dismiss the view controller when done.
         activityVC.completionWithItemsHandler = {
             (activity, success, items, error) in
-            self.save()
-            self.dismissViewControllerAnimated(true, completion: nil)
+            if success {
+                self.save()
+                self.dismissViewControllerAnimated(true, completion: nil)                
+            }
         }
 
         presentViewController(activityVC, animated: true, completion: nil)
