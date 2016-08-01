@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  EditMemeViewController.swift
 //  MemeMe
 //
 //  Created by Roberta Voulon on 2015-12-06.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIScrollViewDelegate {
+class EditMemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIScrollViewDelegate {
 
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var imageScrollView: UIScrollView!
@@ -17,6 +17,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var bottomTextFieldConstraint: NSLayoutConstraint!
 
     let memeTextAttributes = [
         NSStrokeColorAttributeName : UIColor.blackColor(),
@@ -81,35 +82,41 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // MARK: generate meme
     
     func save() {
+        
         // Create the meme
         memedImage = generateMemedImage()
-        _ = Meme(upperText: topTextField.text!, bottomText: bottomTextField.text!, sourceImage: imagePickerView.image!, memedImage: memedImage!)
+        let meme = Meme(upperText: topTextField.text!, bottomText: bottomTextField.text!, sourceImage: imagePickerView.image!, memedImage: memedImage!)
+        
+        // Add the meme to the memes array in the Application Delegate
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.memes.append(meme)
         
     }
     
     func generateMemedImage() -> UIImage {
         
         /* hide the toolbar before we take the snapshot
-         / The way I've done it, I don't actually need to hide the toolbar.
+         / The way we've done it here, we don't actually need to hide the toolbar.
          / Here is that code anyway :)
         */
-//        self.navigationController?.setToolbarHidden(true, animated: false)
+//        navigationController?.setToolbarHidden(true, animated: false)
         
-        // Render the scroll view to an image
-        var aRect: CGRect = scrollView.frame
-        let toolbarHeight = navigationController!.toolbar.frame.height
-        aRect.size.height -= toolbarHeight
-        
+        // Lower the bottom text field so that it matches the margin of the top text field
+        bottomTextFieldConstraint.constant = 8
+        // Render the view to an image
+        let aRect: CGRect = view.frame
         UIGraphicsBeginImageContextWithOptions(aRect.size, false, UIScreen.mainScreen().scale)
-        view.drawViewHierarchyInRect(scrollView.frame, afterScreenUpdates: true)
+        view.drawViewHierarchyInRect(aRect, afterScreenUpdates: true)
         let memedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+        // Put the bottom text field back where it was, just above the toolbar.
+        bottomTextFieldConstraint.constant = 52
         
         /*
          / Just to complete the exercise to unhide the toolbar, but we don't 
          / actually need it.
         */
-//        self.navigationController?.setToolbarHidden(false, animated: false)
+//        navigationController?.setToolbarHidden(false, animated: false)
 
         return memedImage
     }
@@ -169,8 +176,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func subscribeToKeyboardNotifications() {
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditMemeViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditMemeViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     func unsubscribeFromKeyboardNotifications() {
@@ -206,6 +213,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 scrollView.scrollRectToVisible(activeField!.frame, animated: true)
             }
         }
+        
+        // Fix the bottom text to the bottom margin, since there's no toolbar
+        // to consider while we're editing the text
+        bottomTextFieldConstraint.constant = 8
+        
     }
     
     func keyboardWillHide(notification: NSNotification) {
@@ -218,6 +230,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         scrollView.scrollIndicatorInsets = contentInsets
         view.endEditing(true)
         scrollView.scrollEnabled = false
+        
+        // Make the bottom text show just above the toolbar again
+        bottomTextFieldConstraint.constant = 52
+
     }
     
     // MARK: UIScrollViewDelegate methods
@@ -228,6 +244,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     // MARK: IBAction methods
+    
+    @IBAction func cancelAndDismiss(sender: AnyObject) {
+        
+        dismissViewControllerAnimated(true, completion: nil)
+        
+    }
     
     @IBAction func pickAnImage(sender: AnyObject) {
         
