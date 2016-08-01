@@ -37,15 +37,11 @@ class EditMemeViewController: UIViewController, UIImagePickerControllerDelegate,
         
         // Configure top text field
         topTextField.text = "TOP"
-        topTextField.delegate = self
-        topTextField.defaultTextAttributes = memeTextAttributes
-        topTextField.textAlignment = NSTextAlignment.Center
+        setTextField(topTextField)
         
         // Configure bottom text field
         bottomTextField.text = "BOTTOM"
-        bottomTextField.delegate = self
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.textAlignment = NSTextAlignment.Center
+        setTextField(bottomTextField)
 
         // Configure the zooming bounds for the image
         // https://www.veasoftware.com/tutorials/2015/8/3/pinch-to-zoom-uiimageview-with-swift
@@ -243,6 +239,26 @@ class EditMemeViewController: UIViewController, UIImagePickerControllerDelegate,
         return imagePickerView
     }
     
+    // MARK: Helper methods
+
+    func setTextField(textField: UITextField) {
+
+        textField.delegate = self
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = NSTextAlignment.Center
+        
+    }
+    
+    func setImagePickerController(sourceType: UIImagePickerControllerSourceType) {
+
+        // Set the image picker controller before presenting it to the user
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = sourceType
+        presentViewController(imagePicker, animated: true, completion: nil)
+
+    }
+    
     // MARK: IBAction methods
     
     @IBAction func cancelAndDismiss(sender: AnyObject) {
@@ -253,12 +269,19 @@ class EditMemeViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBAction func pickAnImage(sender: AnyObject) {
         
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        presentViewController(imagePicker, animated: true, completion: nil)
+        // Select an image from the photo library
+        let sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        setImagePickerController(sourceType)
     }
     
+    @IBAction func takeAPicture(sender: AnyObject) {
+        
+        // Use the camera to take a picture
+        let sourceType = UIImagePickerControllerSourceType.Camera
+        setImagePickerController(sourceType)
+
+    }
+
     @IBAction func shareMeme(sender: AnyObject) {
         
         // generate a memed image and pass it to an activity view controller
@@ -276,13 +299,5 @@ class EditMemeViewController: UIViewController, UIImagePickerControllerDelegate,
         presentViewController(activityVC, animated: true, completion: nil)
     }
     
-    @IBAction func takeAPicture(sender: AnyObject) {
-        
-        // Use the camera to take a picture
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-        presentViewController(imagePicker, animated: true, completion: nil)
-    }
 }
 

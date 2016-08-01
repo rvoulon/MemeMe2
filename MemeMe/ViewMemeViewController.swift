@@ -11,13 +11,7 @@ import UIKit
 class ViewMemeViewController: UIViewController {
     
     var meme: Meme?
-    private let memeTextAttributes = [
-        NSStrokeColorAttributeName : UIColor.blackColor(),
-        NSForegroundColorAttributeName : UIColor.whiteColor(),
-        NSFontAttributeName : UIFont(name: "Impact", size: 40)!,
-        NSStrokeWidthAttributeName : NSNumber(float: -3.0)
-    ]
-
+    
     @IBOutlet weak var memeImage: UIImageView!
 
     override func viewDidLoad() {
